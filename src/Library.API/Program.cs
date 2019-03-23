@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore;
+using NLog.Web;
+
+namespace Library.API
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .UseNLog() //Adding NLog .Net core 2 only. Registers the NLog services so that they can be used by the dependency injection system.
+                .Build();  
+  
+    }
+}
